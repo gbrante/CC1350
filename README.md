@@ -15,7 +15,7 @@ Duas opções de compilação: no arquivo **"menu.c"**, existe um **#define MATL
 **1)** Se **#define MATLAB** estiver comentado, o firmware roda como no rfPacketErrorRate padrão da TI.
 - Permite várias configurações de transmissão e recepção utilizando o TeraTerm (ou outro) para comunicação via serial.
 
-**2)** Se **#define MATLAB** estiver ativo, funciona em configuração padrão para transmissão/recepção de 1000 pacotes FSK em 915kHz
+**2)** Se **#define MATLAB** estiver ativo, funciona sem o TeraTerm com configuração fixa de transmissão/recepção de 1000 pacotes, com modulação FSK, na frequência de 915kHz.
 - O botão direito (BTN-2) configura o rádio como receptor. O LED vermelho ficará acesso esperando a transmissão ocorrerr. Quando a transmissão iniciar, esse LED ficará piscando indicando a recepção.
 - Após pressionar o botão direito (BTN-2), rodar o **ihm.m** no MATLAB.
 - O botão esquerdo (BTN-1) configura o rádio como transmissor. O LED verde ficará piscando indicando que a transmissão está ocorrendo.
