@@ -11,6 +11,7 @@ Atualizar (ou instalar) CC13xx/CC26xx Device Support através do próprio CCS
 4. Importar ambos os projetos. Porém, o único a ser utilizado é o rfPacketErrorRate_CC1350...
 
 Duas opções de compilação: no arquivo **"menu.c"**, existe um **#define MATLAB**.
+
 **1)** Se **#define MATLAB** estiver comentado, o firmware roda como no rfPacketErrorRate padrão da TI.
 - Permite várias configurações de transmissão e recepção utilizando o TeraTerm (ou outro) para comunicação via serial.
 
