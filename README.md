@@ -12,7 +12,7 @@ Atualizar (ou instalar) CC13xx/CC26xx Device Support através do próprio CCS
 
 Duas opções de compilação: no arquivo **"menu.c"**, existe um #define MATLAB.
 1) Se **#define MATLAB** estiver comentado, o firmware roda como no rfPacketErrorRate padrão da TI.
-- Permite várias configurações de transmissão e recepção. Utilizar o TeraTerm para comunicação via serial.
+- Permite várias configurações de transmissão e recepção utilizando o TeraTerm (ou outro) para comunicação via serial.
 
 2) Se **#define MATLAB** estiver ativo, funciona em configuração padrão para transmissão/recepção de 1000 pacotes FSK em 915kHz
 - O botão direito (BTN-2) configura o rádio como receptor. O LED vermelho ficará acesso esperando a transmissão ocorrerr. Quando a transmissão iniciar, esse LED ficará piscando indicando a recepção.
