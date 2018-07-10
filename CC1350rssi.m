@@ -1,24 +1,28 @@
 function saida = CC1350rssi(n_amostras)
-% DescriÃ§Ã£o:
+% Descrição:
 %
-% Esta funÃ§Ã£o inicializa uma comunicaÃ§Ã£o serial com um CC1350 conectado no
+% Esta função inicializa uma comunicação serial com um CC1350 conectado no
 % computador. Se houver mais de um CC1350 conectado, ele seleciona
-% automaticamente o primeiro que estiver disponÃ­vel.
-% A saÃ­da da funÃ§Ã£o Ã© um vetor contendo o Ã­ndice de cada pacote recebido, o
-% nÃºmero de erros ocorridos atÃ© aquele pacote e a potÃªncia instantÃ¢nea
+% automaticamente o primeiro que estiver disponível.
+% A saída da função é um vetor contendo o índice de cada pacote recebido, o
+% número de erros ocorridos até aquele pacote e a potência instantânea
 % (RSSI) do pacote.
-% Durante a execuÃ§Ã£o, Ã© apresentado ao usuÃ¡rio - na janela de comando do
-% Matlab - as informaÃ§Ãµes coletadas.
+% Durante a execução, é apresentado ao usuário - na janela de comando do
+% Matlab - as informações coletadas.
 %
 % Sintaxe:
 % dados = CC1350rssi(n_amostras)
 %
-% ParÃ¢metro:
-% n_amostras -> NÃºmero de amostras que serÃ£o coletadas durante a execuÃ§Ã£o
+% Parâmetro:
+% n_amostras -> Número de amostras que serão coletadas durante a execução
 %
 
 idCOM{1} = '0'; % Celula (lista) com nomes das COMs
 nCOM = 0; % Numero de CC1350 encontrados
+
+% Fecha todas as portas que possam estar abertas
+newobjs = instrfind;
+fclose(newobjs);
 
 if ispc % O codigo abaixo funciona para Windows
     % Funcao que retorna informacao das portas COM Para localizar se algum CC1350 esta conectado
@@ -70,14 +74,14 @@ if ispc % O codigo abaixo funciona para Windows
 else % Se o computador for MAC ou Linux, o usuario deve digitar o nome da porta COM
     % Encontra as portas serial conectadas
     serials = instrhwinfo('serial');
-    disp('O CC1350 estÃ¡ em qual das portas COM abaixo?');
+    disp('O CC1350 está em qual das portas COM abaixo?');
     disp(serials.AvailableSerialPorts);
     idCOM{1} = input('','s');
 end
 
 % Verifica se tem algum CC1350 conectado
 if isempty(idCOM) % Caso nenhuma COM tenha sido encontrada com Kico
-    disp('NÃ£o foi encontrado nenhum CC1350 conectado ao computador');
+    disp('Não foi encontrado nenhum CC1350 conectado ao computador');
 else
     % Encontra todas as comunicacoes tipo serial no PC
     serials = instrhwinfo('serial');
@@ -100,7 +104,7 @@ else
     end
     
     if CC1350 == 0
-        disp('Nenhum CC1350 disponÃ­vel');
+        disp('Nenhum CC1350 disponível');
     else
         disp(['Conectando com o CC1350 na ',CC1350]);
         
@@ -108,17 +112,17 @@ else
         % E independente deste erro, a comunicacao deve ser encerrada
         % corretamente com fclose(.) e delete(.)
         try
-            % ComunicaÃ§Ã£o serial
+            % Comunicação serial
             s = serial(CC1350,'BaudRate',115200);
             fopen(s);
-            fprintf('\nPronto para iniciar a comunicaÃ§Ã£o\n\nPressione BTN-2 para configurar o CC1350 como receptor\nVocÃª deverÃ¡ enxergar o LED vermelho acesso apÃ³s pressionar BTN-2\n\n');
+            fprintf('\nPronto para iniciar a comunicação\n\nPressione BTN-2 para configurar o CC1350 como receptor\nVocê deverá enxergar o LED vermelho acesso após pressionar BTN-2\n\n');
             set(s,'Timeout',inf);
             
-            % Aguarda botÃ£o ser pressioando
+            % Aguarda botão ser pressioando
             a = fgetl(s);
             disp('RX <--');
             disp('Pressione BTN-1 no CC1350 transmissor');
-            disp('LEDs verde\vermelho irÃ£o piscar no transmissor\receptor indicando comunicaÃ§Ã£o');
+            disp('LEDs verde\vermelho irão piscar no transmissor\receptor indicando comunicação');
             
             % Variavel caso haja erro, para correto termino da conexao serial
             erro = false;
